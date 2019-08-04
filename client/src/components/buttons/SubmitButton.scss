@@ -1,0 +1,22 @@
+.SubmitButton {
+  background: black;
+  width: 80%;
+  height: 50px;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 19px;
+  margin: 15px;
+  font-family: "Roboto", sans-serif;
+
+  &:active {
+    background-color: #c2ceff;
+    color: white;
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: #ec1900;
+    color: white;
+    cursor: pointer;
+  }
+}

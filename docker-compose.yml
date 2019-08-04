@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: database
+    hostname: mydatabase
+    ports:
+      - 3306:3306
+    logging:
+        driver: none
+    volumes:
+      - ./db-volumes/mysql-data:/var/lib/mysql
+      - ./db-volumes/mysql-log:/var/log/mysql
+      - ./db-volumes/mysql-conf:/etc/mysql/conf.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: krzysiekk44
+      MYSQL_PASSWORD: user
+      MYSQL_DATABASE: mydb
+    networks:
+      - webapp_network
+
+  server:
+    image: server:latest
+    container_name: server
+    restart: always
+    build:
+      context: ./server
+      dockerfile: docker/development/Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server:/code
+    environment:
+      - "PYTHONUNBUFFERED=1"
+    depends_on:
+      - db
+    working_dir: /code
+    command: /fire_up.sh
+    networks:
+      - webapp_network
+
+  client:
+      container_name: client
+      build:
+        context: ./client
+        dockerfile: docker/development/Dockerfile
+      volumes:
+        - ./client:/app
+        - /app/node_modules
+      ports:
+        - 3000:3000
+      environment:
+        - NODE_ENV=development
+        - CHOKIDAR_USEPOLLING=true
+      networks:
+        - webapp_network
+
+networks:
+  webapp_network:
+    driver: bridge

@@ -1,0 +1,192 @@
+@import "../../common/responsive";
+
+.loginFormContentGrid {
+
+  width: 100%;
+  height: 580px;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #5c5c5c;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .emailUsernameField, .passwordField {
+    input {
+      background-color: #E8F0F3;
+      height: 50px;
+      width: 100%;
+      border: none;
+      border-radius: 2px;
+      color: #5c5c5c;
+      padding: 15px;
+      line-height: 50px;
+      vertical-align: center;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+    }
+  }
+
+  .rememberForgot {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+
+    .remember {
+      flex-grow: 0;
+      box-sizing: border-box;
+      width: 50%;
+      display: flex;
+
+      .myinput[type="checkbox"]:before {
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        width: 25px;
+        height: 25px;
+        border: 1px solid #808080;
+        border-radius: 2px;
+        content: "";
+        background: #FFF;
+      }
+
+      .myinput[type="checkbox"] {
+        width: 25px;
+        height: 25px;
+        margin: 0;
+      }
+
+      .myinput[type="checkbox"]:checked:after {
+        background: #7ee6ff;
+      }
+
+      .myinput[type="checkbox"]:disabled:after {
+        -webkit-filter: opacity(0.4);
+      }
+
+      .myinput[type="checkbox"]:not(:disabled):checked:hover:before {
+        background: #7ee6ff;
+        cursor: pointer;
+
+      }
+
+      .myinput[type="checkbox"]:not(:disabled):hover:before {
+        background: white;
+        border-color: #85A9BB #92C2DA #92C2DA #85A9BB;
+        cursor: pointer;
+      }
+
+      .myinput[type="checkbox"]:not(:disabled):hover:before {
+        border-color: #3D7591;
+      }
+
+      .rememberMe {
+        display: inline-block;
+        margin-left: 10px;
+        line-height: 25px;
+        font-size: 15px;
+        color: #7c7c7c;
+        font-family: 'Open Sans', sans-serif;
+      }
+    }
+
+    .forget {
+      flex-grow: 0;
+      box-sizing: border-box;
+      width: 50%;
+      text-align: right;
+
+      .forgotPasswordLink {
+        line-height: 25px;
+        justify-content: center;
+        text-decoration: none;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 15px;
+        color: #196BE7;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    margin-top: 0;
+    padding: 8px;
+
+    .signInButton {
+      background: white;
+      width: 170px;
+      height: 47px;
+      margin: 20px 0 0;;
+      border: 1px solid #196BE7;
+      border-radius: 22px;
+      color: #196BE7;
+
+      &:hover {
+        background: #196BE7;
+        color: white;
+      }
+    }
+  }
+
+  .notamember {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+
+    .question {
+      flex-grow: 0;
+      box-sizing: border-box;
+      width: 50%;
+      display: flex;
+      line-height: 25px;
+      color: #3c3c3c;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+    }
+
+    .createAccount {
+
+      width: 50%;
+      text-align: right;
+
+      a {
+        margin-left: 5px;
+        line-height: 25px;
+        justify-content: center;
+        font-family: 'Open Sans', sans-serif;
+        text-decoration: none;
+        font-size: 15px;
+        color: #196BE7;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .field {
+    width: 100%;
+  }
+
+  @media (min-width: 400px) {
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
+  }
+}

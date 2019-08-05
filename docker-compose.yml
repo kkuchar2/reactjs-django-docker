@@ -7,8 +7,6 @@ services:
     hostname: mydatabase
     ports:
       - 3306:3306
-    logging:
-        driver: none
     volumes:
       - ./db-volumes/mysql-data:/var/lib/mysql
       - ./db-volumes/mysql-log:/var/log/mysql
@@ -35,6 +33,9 @@ services:
       - ./server:/code
     environment:
       - "PYTHONUNBUFFERED=1"
+      - "DJANGO_SECRET=${DJANGO_SECRET}"
+      - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SENDGRID_USER=${SENDGRID_USER}"
     depends_on:
       - db
     working_dir: /code

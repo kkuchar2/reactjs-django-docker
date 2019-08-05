@@ -6,17 +6,9 @@ import "./TextInputField.scss"
 
 class TextInputField extends Component {
 
-    renderError() {
-        const errorText = this.props.errorText;
-
-        if (errorText !== undefined && errorText !== "") {
-            return <ErrorText text={errorText} />;
-        }
-    }
-
     render() {
         return (
-            <div className={this.props.classname}>
+            <div className={this.props.className}>
                 <input
                     type={"text"}
                     name={this.props.name}
@@ -25,7 +17,7 @@ class TextInputField extends Component {
                     onChange={this.props.onChange}>
                 </input>
 
-               { this.renderError() }
+               <ErrorText text={ this.props.errorText} />
 
             </div>
         )

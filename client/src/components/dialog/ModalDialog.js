@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-
 import IconButton from "../buttons/IconButton";
-import ImageComponent from "../media/image";
+import Image from "../image/image";
 
 import "./ModalDialog.scss"
 
@@ -20,9 +19,7 @@ class ModalDialog extends Component {
                     </IconButton>
 
                     <div className={"mailIcon"}>
-                        <ImageComponent
-                            uri={process.env.PUBLIC_URL + '/mail_icon2.png'}>
-                        </ImageComponent>
+                        <Image src={process.env.PUBLIC_URL + '/mail_icon2.png'} />
                     </div>
                     <div className={"dialog-content-text"}>
                         <div className={"confirm-title"}>E-mail confirmation</div>

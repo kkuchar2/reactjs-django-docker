@@ -21,14 +21,14 @@ class LoginForm extends Component {
         super(props);
 
         this.state = {
-            email: '',
+            usernameEmail: '',
             password: '',
-            emailError: '',
+            usernameEmailError: '',
             passwordError: '',
             formError: ''
         };
 
-        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onUsernameEmailChange = this.onUsernameEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onSubmitForm = this.onSubmitForm.bind(this);
         this.login = this.login.bind(this);
@@ -46,12 +46,12 @@ class LoginForm extends Component {
         }
     }
 
-    onEmailChange(event) {
-        this.setState({emailError: "", passwordError: "", formError: "", email: event.target.value});
+    onUsernameEmailChange(event) {
+        this.setState({usernameEmailError: "", passwordError: "", formError: "", usernameEmail: event.target.value});
     }
 
     onPasswordChange(event) {
-        this.setState({emailError: "", passwordError: "", formError: "", password: event.target.value});
+        this.setState({usernameEmailError: "", passwordError: "", formError: "", password: event.target.value});
     }
 
     onSubmitForm(event) {
@@ -60,10 +60,7 @@ class LoginForm extends Component {
     }
 
     login() {
-        this.apiRequest.call({
-            "email": this.state.email,
-            "password": this.state.password
-        });
+        this.apiRequest.call({"username": this.state.usernameEmail, "password": this.state.password });
     }
 
     onLoginResponse(data) {
@@ -78,6 +75,7 @@ class LoginForm extends Component {
     render() {
         return (
             <Grid className={"loginFormContentGrid"} container>
+
                 <form onSubmit={this.onSubmitForm}>
 
                     <Grid spacing={2} container>
@@ -87,13 +85,11 @@ class LoginForm extends Component {
                         <Grid className={"field"} style={{padding: 0}} item>
 
                             <TextInputField
-                                classname={"emailUsernameField"}
-                                name={"email"}
-                                value={this.state.email}
-                                placeholder={"E-mail"}
-                                onChange={this.onEmailChange}
-                                errorText={() => {
-                                }}>
+                                className={"emailUsernameField"}
+                                name={"username"}
+                                placeholder={"E-mail or username"}
+                                onChange={this.onUsernameEmailChange}
+                                errorText={this.state.usernameEmailError}>
                             </TextInputField>
 
                         </Grid>
@@ -101,12 +97,11 @@ class LoginForm extends Component {
                         <Grid className={"field"} style={{padding: 0}} item>
 
                             <PasswordInputField
-                                classname={"passwordField"}
+                                className={"passwordField"}
                                 name={"password"}
                                 placeholder={"Password"}
                                 onChange={this.onPasswordChange}
-                                errorText={() => {
-                                }}>
+                                errorText={this.state.passwordError}>
                             </PasswordInputField>
 
                         </Grid>

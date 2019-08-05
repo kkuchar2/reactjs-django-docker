@@ -12,6 +12,8 @@ class FacebookButton extends Component {
                 className={"facebookButton"}
                 onClick={this.props.onClick}
                 icon={process.env.PUBLIC_URL + '/fb_icon.png'}
+                iconWidth={25}
+                iconHeight={25}
                 content={"Continue with Facebook"}>
             </IconButton>
         )

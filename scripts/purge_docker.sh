@@ -15,3 +15,4 @@ docker rmi $(docker images -q) --force
 cd ..
 
 sudo rm -rf db-volumes
+sudo rm -rf client/node_modules

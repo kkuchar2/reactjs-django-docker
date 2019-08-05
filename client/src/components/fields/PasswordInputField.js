@@ -5,26 +5,18 @@ import ErrorText from "../errors/ErrorText";
 
 class PasswordInputField extends Component {
 
-  renderError() {
-        const errorText = this.props.errorText;
-
-        if (errorText !== undefined && errorText !== "") {
-            return <ErrorText text={errorText} />;
-        }
-    }
-
     render() {
         return (
-            <div className={this.props.classname}>
+            <div className={this.props.className}>
                 <input
                     type={"password"}
-                    id={"password"}
-                    name={"password"}
+                    id={this.props.id}
+                    name={this.props.name}
                     placeholder={this.props.placeholder}
                     onChange={this.props.onChange}>
                 </input>
 
-                { this.renderError() }
+                <ErrorText text={this.props.errorText} />
             </div>
         )
     }

@@ -14,11 +14,9 @@
 }
 
 .containerMain {
-
-
   height: 100%;
 
   .gridMain {
-    @include responsive_width(95%, 350px, 350px, 350px, 350px);
+    @include responsive_width(95%, 350px, 350px, 380px, 380px);
   }
 }

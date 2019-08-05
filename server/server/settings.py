@@ -17,6 +17,12 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 INSTALLED_APPS = [
 
+    # Accounts management
+    'accounts',
+
+    # External API
+    'api',
+
     # Django applications
     'django.contrib.sites',
     'django.contrib.admin',
@@ -37,19 +43,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.google',
-
-    # Accounts management
-    'accounts',
-
-    # External API
-    'api',
+    'allauth.socialaccount.providers.google'
 ]
 
 SITE_ID = 1
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
 
 REST_FRAMEWORK = {
@@ -157,20 +155,28 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
+
 LANGUAGE_CODE = 'en-us'
+
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_L10N = True
+
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
+
 STATIC_URL = '/static/'
 
 # TODO: Investigate
 SECURE_SSL_REDIRECT = False
 
 # E-mail configuration
+
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
+
 SENDGRID_ECHO_TO_STDOUT = True
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 

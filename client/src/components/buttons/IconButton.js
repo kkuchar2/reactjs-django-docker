@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-
-import ImageComponent from "../media/image";
-
 import "./IconButton.scss"
+import Image from "../image/image";
 
 class IconButton extends Component {
     render() {
@@ -15,7 +13,7 @@ class IconButton extends Component {
                 type={"submit"}
                 onClick={props.onClick}>
                 <div className={"group"}>
-                    <ImageComponent className={"buttonIcon"} uri={props.icon}/>
+                    <Image className={"buttonIcon"} src={props.icon} width={props.iconWidth} height={props.iconHeight}/>
                     <div className={"buttonText"}>{props.content}</div>
                 </div>
             </button>

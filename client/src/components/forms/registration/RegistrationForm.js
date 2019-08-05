@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
+import { withRouter} from 'react-router-dom'
 
 import Grid from "@material-ui/core/Grid";
 import TextInputField from "../../fields/TextInputField";
 import PasswordInputField from "../../fields/PasswordInputField";
 import SubmitButton from "../../buttons/SubmitButton";
-import ErrorText from "../../errors/ErrorText";
 import APIRequest from "../../common/APIRequest";
+import PrivacyPolicy from "../../privacy_policy/PrivacyPolicy";
 
 import "./RegistrationForm.scss"
-import PrivacyPolicy from "../../privacy_policy/PrivacyPolicy";
 
 class RegistrationForm extends Component {
 
@@ -20,6 +20,7 @@ class RegistrationForm extends Component {
             password1: '',
             password2: '',
             emailError: '',
+            usernameError: '',
             password1Error: '',
             password2Error: '',
             formError: ''
@@ -37,28 +38,20 @@ class RegistrationForm extends Component {
         this.apiRequest = new APIRequest("registration/", this.onRegistrationResponse, this.onRegistrationError);
     }
 
-    renderFormError() {
-        const error = this.state.formError;
-
-        if (error !== undefined && error !== "") {
-            return <ErrorText text={error}/>;
-        }
-    }
-
     onEmailChange(event) {
-        this.setState({ emailError: "", passwordError: "", formError: "", email: event.target.value });
+        this.setState({ emailError: "", email: event.target.value });
     }
 
     onUsernameChange(event) {
-        this.setState({ emailError: "", passwordError: "", formError: "", username: event.target.value })
+        this.setState({ usernameError: "", username: event.target.value })
     }
 
     onPassword1Change(event) {
-        this.setState({ emailError: "", password1Error: "", formError: "", password1: event.target.value });
+        this.setState({ password1Error: "", password1: event.target.value });
     }
 
     onPassword2Change(event) {
-        this.setState({ emailError: "", password1Error: "", formError: "", password2: event.target.value });
+        this.setState({ password2Error: "", password2: event.target.value });
     }
 
     onSubmitForm(event) {
@@ -78,6 +71,7 @@ class RegistrationForm extends Component {
     onRegistrationResponse(data) {
         console.log("Registration response:");
         console.log(data);
+        this.props.history.push("/");
     }
 
     onRegistrationError(error) {
@@ -86,23 +80,21 @@ class RegistrationForm extends Component {
 
     render() {
         return (
-            <Grid className={"registrationFormContentGrid"} container>
+            <Grid style={{ padding: 0 }} className={"registrationFormContentGrid"} container>
 
-                <form onSubmit={this.onSubmitForm}>
-
-                    <Grid spacing={2} container>
+                <form style={{width: "100%", padding: 0 }} onSubmit={this.onSubmitForm}>
+                    <Grid style={{width: "100%", padding: 10, margin: 0 }} spacing={2} container>
 
                         <div className={"title"}>Create account</div>
 
                         <Grid className={"field"} style={{padding: 0}} item>
 
                             <TextInputField
-                                classname={"emailField"}
+                                className={"emailField"}
                                 name={"email"}
-                                value={this.state.email}
                                 placeholder={"E-mail"}
                                 onChange={this.onEmailChange}
-                                errorText={() => {}}>
+                                errorText={this.state.emailError}>
                             </TextInputField>
 
                         </Grid>
@@ -110,12 +102,11 @@ class RegistrationForm extends Component {
                           <Grid className={"field"} style={{padding: 0}} item>
 
                             <TextInputField
-                                classname={"usernameField"}
+                                className={"usernameField"}
                                 name={"username"}
-                                value={this.state.username}
                                 placeholder={"Username"}
                                 onChange={this.onUsernameChange}
-                                errorText={() => {}}>
+                                errorText={this.state.usernameError}>
                             </TextInputField>
 
                         </Grid>
@@ -123,12 +114,12 @@ class RegistrationForm extends Component {
                         <Grid className={"field"} style={{padding: 0}} item>
 
                             <PasswordInputField
-                                classname={"passwordField1"}
+                                className={"passwordField1"}
+                                id={"password1"}
                                 name={"password1"}
-                                value={this.state.password1}
                                 placeholder={"Password"}
-                                onChange={this.onPassword1Change}
-                                errorText={() => {}}>
+                                errorText={this.state.password1Error}
+                                onChange={this.onPassword1Change}>
                             </PasswordInputField>
 
                         </Grid>
@@ -136,12 +127,12 @@ class RegistrationForm extends Component {
                         <Grid className={"field"} style={{padding: 0}} item>
 
                             <PasswordInputField
-                                classname={"passwordField2"}
+                                className={"passwordField2"}
+                                id={"password2"}
                                 name={"password2"}
-                                value={this.state.password2}
                                 placeholder={"Password (confirm)"}
-                                onChange={this.onPassword2Change}
-                                errorText={() => {}}>
+                                errorText={this.state.password2Error}
+                                onChange={this.onPassword2Change}>
                             </PasswordInputField>
 
                         </Grid>
@@ -150,8 +141,8 @@ class RegistrationForm extends Component {
 
                             <SubmitButton
                                 className={"registerButton"}
-                                onClick={this.onSubmitForm}
-                                content={"Register"}>
+                                content={"Register"}
+                                onClick={this.onSubmitForm}>
                             </SubmitButton>
                         </Grid>
 
@@ -171,4 +162,4 @@ class RegistrationForm extends Component {
     }
 }
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);
